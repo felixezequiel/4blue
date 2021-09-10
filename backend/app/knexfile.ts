@@ -1,50 +1,17 @@
-// Update with your config settings.
-interface KnexFile {
-  [key: string]: object
+import { Knex } from "knex"
+
+export const configuration: Knex.Config = {
+  client: "sqlite3",
+  connection: {
+    connectionString: './db/db.sqlite',
+    timezone: "utc",
+  },
+  pool: {
+    min: 2,
+    max: 10,
+  },
+  migrations: {
+    directory: "./db/migrations",
+  },
+  useNullAsDefault: true
 }
-export const configuration: KnexFile = {
-
-  development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './db/db.sqlite'
-    },
-    migrations: {
-      directory: './db/migrations'
-    },
-    useNullAsDefault: true
-  },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
-
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
-
-};

@@ -1,12 +1,21 @@
 import * as express from 'express'
-import { db } from '../../../db'
+
+const db = require('../../../../db')
 
 interface Definecontroller {
-  index: (req: express.Request, res: express.Response) => Promise<any>
+  [key: string]: (req: express.Request, res: express.Response, next?: express.NextFunction) => Promise<any>
 }
+
 export const ControllerClients: Definecontroller = {
+
   async index (req, res) {
-    const response = await db('clients').select('*')
-    res.status(200).json(response)
+    const response = await db('clients').select('*').where(req.query).catch(() => [])
+    return res.status(200).json({ response })
+  },
+
+  async insert(req, res) {
+    const response = await db('clients').insert(req.body).catch(erro => ({error: true, message: erro}))
+    if (response.erro) return res.status(404).json(response)
+    return res.status(204).send()
   }
 }

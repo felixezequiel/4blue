@@ -10,12 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ControllerClients = void 0;
-const db_1 = require("../../../db");
+const db = require('../../../../db');
 exports.ControllerClients = {
     index(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield (0, db_1.db)('clients').select('*');
-            res.status(200).json(response);
+            const response = yield db('clients').select('*').where(req.query).catch(() => []);
+            return res.status(200).json({ response });
+        });
+    },
+    insert(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield db('clients').insert(req.body).catch(erro => ({ error: true, message: erro }));
+            if (response.erro)
+                return res.status(404).json(response);
+            return res.status(204).send();
         });
     }
 };

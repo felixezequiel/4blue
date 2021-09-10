@@ -2,44 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configuration = void 0;
 exports.configuration = {
-    development: {
-        client: 'sqlite3',
-        connection: {
-            filename: './db/db.sqlite'
-        },
-        migrations: {
-            directory: './db/migrations'
-        },
-        useNullAsDefault: true
+    client: "sqlite3",
+    connection: {
+        connectionString: './db/db.sqlite',
+        timezone: "utc",
     },
-    staging: {
-        client: 'postgresql',
-        connection: {
-            database: 'my_db',
-            user: 'username',
-            password: 'password'
-        },
-        pool: {
-            min: 2,
-            max: 10
-        },
-        migrations: {
-            tableName: 'knex_migrations'
-        }
+    pool: {
+        min: 2,
+        max: 10,
     },
-    production: {
-        client: 'postgresql',
-        connection: {
-            database: 'my_db',
-            user: 'username',
-            password: 'password'
-        },
-        pool: {
-            min: 2,
-            max: 10
-        },
-        migrations: {
-            tableName: 'knex_migrations'
-        }
-    }
+    migrations: {
+        directory: "./db/migrations",
+    },
+    useNullAsDefault: true
 };
