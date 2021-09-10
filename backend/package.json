@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "tsc",
     "watch": "tsc -w",
-    "start": "concurrently \"npm run watch\" \"nodemon ./dist/index.js\""
+    "start": "concurrently \"npm run watch\" \"npx knex migrate:latest\" \"nodemon ./dist/index.js\""
   },
   "author": "felix ezequiel",
   "license": "ISC",
