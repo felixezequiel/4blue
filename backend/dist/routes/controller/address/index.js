@@ -9,26 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ControllerClients = void 0;
+exports.ControllerAddress = void 0;
 const db = require('../../../../db');
-exports.ControllerClients = {
+exports.ControllerAddress = {
     index(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield db('clients').select('*').where(req.query).catch(() => []);
+            const response = yield db('address').select('*').where(req.query).catch(() => []);
             return res.status(200).json(response);
         });
     },
     insert(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield db('clients').insert(req.body, 'id').catch(erro => ({ error: true, message: erro }));
+            const response = yield db('address').insert(req.body).catch(erro => ({ error: true, message: erro }));
             if (response.error)
-                return res.status(404).json(response);
-            return res.status(200).json({ id: response[0] });
+                return res.status(400).json(response);
+            return res.status(204).send();
         });
     },
-    deleteClients(req, res) {
+    deleteAddress(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield db('clients').delete().where(req.params).catch(erro => ({ error: true, message: erro }));
+            const response = yield db('address').delete().where(req.params).catch(erro => ({ error: true, message: erro }));
             if (response.error)
                 return res.status(400).json(response);
             return res.status(204).send();
@@ -36,7 +36,7 @@ exports.ControllerClients = {
     },
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield db('clients').update(req.body).where(req.params);
+            yield db('address').update(req.body).where(req.params);
             return res.status(204).send();
         });
     }
