@@ -1,6 +1,8 @@
 // Update with your config settings.
-
-module.exports = {
+interface KnexFile {
+  [key: string]: object
+}
+export const configuration: KnexFile = {
 
   development: {
     client: 'sqlite3',

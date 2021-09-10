@@ -1,5 +1,5 @@
 import * as express from 'express'
-import { ControllerUsers } from './controller/users'
+import { ControllerClients } from './controller/clients'
 
 export class Routes {
   routes: express.Application
@@ -9,6 +9,6 @@ export class Routes {
   }
 
   private defineRoutes (): void {
-    this.routes.get('/users', ControllerUsers.index)
+    this.routes.get('/clients', ControllerClients.index)
   }
 }
