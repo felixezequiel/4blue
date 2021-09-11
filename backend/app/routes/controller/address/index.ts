@@ -1,9 +1,9 @@
 import { ControllerRoutes } from '../../../types'
-import { View } from '../../view'
+import { Models } from '../../models'
 
 export const ControllerAddress: ControllerRoutes = {
-  index: async (req, res) => View.select(req, res, null, 'address'),
-  insert: async (req, res) => View.insert(req, res, null, 'address'),
-  deleteAddress: async (req, res) => View.delete(req, res, null, 'address'),
-  update: async (req, res) => View.update(req, res, null, 'address')
+  index: async (req, res) => Models.select(req, res, null, 'address'),
+  insert: async (req, res) => Models.insert(req, res, null, 'address'),
+  deleteAddress: async (req, res) => Models.delete(req, res, null, 'address'),
+  update: async (req, res) => Models.update(req, res, null, 'address')
 }

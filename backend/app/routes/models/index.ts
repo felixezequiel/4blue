@@ -1,14 +1,14 @@
 import { FunctionRequest } from "../../types";
 const db = require('../../../db')
 
-interface DefineView {
+interface DefineModels {
   select: FunctionRequest,
   update: FunctionRequest,
   delete: FunctionRequest,
   insert: FunctionRequest
 }
 
-export const View: DefineView = {
+export const Models: DefineModels = {
   async select (req, res, _, table) {
     const response = await db(table).select('*').where(req.query).catch(() => [])
     return res.status(200).json(response)
