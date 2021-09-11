@@ -1,10 +1,15 @@
-import './App.css';
+import { GlobalState } from "./provider/globalState";
+import { Routes } from "./routes";
+import './index.css'
+import { Template } from "./template";
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <GlobalState>
+      <Template>
+        <Routes />
+      </Template>
+    </GlobalState>
   );
 }
 
