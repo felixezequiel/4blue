@@ -5,8 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"cd ./frontend && yarn start\" \"cd ./backend && yarn start\""
+    "start": "concurrently \"cd ./frontend && yarn start\" \"cd ./backend && yarn start\"",
+    "server": "concurrently \"cd ./backend && yarn deploy\" \"cd ./frontend && yarn deploy\"",
+    "deploy": "npm install && yarn server"
   },
   "author": "Felix Ezequiel",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.2.1"
+  }
 }

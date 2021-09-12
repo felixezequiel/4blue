@@ -2,8 +2,6 @@ import { BoxAddress, ContainerAddress } from "../../styles/components/address";
 import { GenericsProps } from "../../types";
 
 export const Address = ({ addres }: GenericsProps) => {
-  console.log(addres);
-
   return (
     <ContainerAddress>
       <h1

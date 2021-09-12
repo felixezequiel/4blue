@@ -1,5 +1,12 @@
+import axios, { AxiosPromise, AxiosResponse } from "axios";
+import { io } from "../..";
 import { FunctionRequest } from "../../types";
 const db = require('../../../db')
+
+const infoDataClients = async () => {
+  const response: AxiosResponse = await axios.get('http://localhost:3030/clients')
+  return io.emit('clients', response.data)
+}
 
 interface DefineModels {
   select: FunctionRequest,
@@ -25,6 +32,7 @@ export const Models: DefineModels = {
 
   async update (req, res, _, table) {
     await db(table).update(req.body).where(req.params).catch(erro => erro)
+    await infoDataClients()
     return res.status(204).send()
   },
 
@@ -37,6 +45,7 @@ export const Models: DefineModels = {
   async insert (req, res, _, table) {
     const response = await db(table).insert(req.body, 'id').catch(erro => ({ error: true, message: erro }))
     if (response.error) return res.status(404).json(response)
+    if (table === 'clients') await infoDataClients()
     return res.status(200).json({ id: response[0] })
   }
 }

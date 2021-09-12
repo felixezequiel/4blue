@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { DeleteAddress, DeleteClients } from "../../../api"
+import { Button } from "../button"
 import { TableCustom, TdCustom, ThCustom, TheadCustom, TrCustom } from "./style"
 import { TdUpdate } from "./td"
 
@@ -58,11 +59,11 @@ export const Table = ({ data, view, callback, update }: TableProps) => {
             ))}
             {update ? 
             <TdCustom>
-              <button
+              <Button 
+                text='Delete'
+                type='button'
                 onClick={ () => handleDelete(dt.id) }
-              >
-                Delete
-              </button>
+              />
             </TdCustom> 
             :<></>}
           </TrCustom>

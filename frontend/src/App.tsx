@@ -2,13 +2,16 @@ import { GlobalState } from "./provider/globalState";
 import { Routes } from "./routes";
 import './index.css'
 import { Template } from "./template";
+import { Socket } from "./provider/socket";
 
 function App() {
   return (
     <GlobalState>
-      <Template>
-        <Routes />
-      </Template>
+      <Socket>
+        <Template>
+          <Routes />
+        </Template>
+      </Socket>
     </GlobalState>
   );
 }

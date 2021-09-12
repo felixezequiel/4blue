@@ -1,14 +1,16 @@
 import reactDOM from 'react-dom'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { RouteProps } from "react-router"
 import { SearchAddress, SearchClients } from "../../api"
 import { Table } from "../../global/atom/table"
 import { ContainerHome } from "../../styles/pages/home"
 import { Address } from '../../components/addres'
 import { msgInfoAddres } from '../../helpers/messages'
+import { SocketIo } from '../../provider/socket'
 // eslint-disable-next-line
 export const Home = ({  }: RouteProps) => {
   const [ clients, setClients ] = useState([])
+  const io = useContext(SocketIo)
 
   useEffect(() => {
     const fetch = async () => {
@@ -16,10 +18,13 @@ export const Home = ({  }: RouteProps) => {
       setClients(response.data)
     }
     fetch()
-  }, [])
+    io.on('client', data => {
+      setClients(data)
+    })
+  }, [io])
 
   async function tableCallBack (id: number) {
-    const response = await SearchAddress({ fk_id: id })
+    const response = await SearchAddress({ id })
     const html = document.createElement('div')
     reactDOM.render(<Address addres={ response.data[0] || [] }/>, html)
     await msgInfoAddres(html)

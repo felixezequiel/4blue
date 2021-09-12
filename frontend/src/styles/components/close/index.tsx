@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const ContainerManage = styled.div`
+export const ContainerClose = styled.div`
   width: 100%;
+  padding: 10px;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
-  overflow: auto;
+  justify-content: flex-end;
 `

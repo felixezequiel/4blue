@@ -1,6 +1,7 @@
 import * as express from 'express'
 import { ControllerAddress } from './controller/address/index.js'
 import { ControllerClients } from './controller/clients/index.js'
+import { ControllerDataClients } from './controller/dataClients/index.js'
 
 export class Routes {
   routes: express.Application
@@ -21,6 +22,9 @@ export class Routes {
     this.routes.post('/address', ControllerAddress.insert)
     this.routes.put('/address/:id', ControllerAddress.update)
     this.routes.delete('/address/:id', ControllerAddress.deleteAddress)
+
+    //Relacionamento
+    this.routes.get('/dataClients', ControllerDataClients.index)
     
   }
 }

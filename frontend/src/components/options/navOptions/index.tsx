@@ -20,7 +20,7 @@ export const NavOptions = () => {
           <img 
             src={ nav.image }
             height='15px'
-            alt='home'
+            alt={nav.name}
             style={{
               marginRight: '20px'
             }}

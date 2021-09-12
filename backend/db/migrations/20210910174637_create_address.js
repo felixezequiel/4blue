@@ -5,6 +5,7 @@ exports.up = function(knex) {
     table.string('street').notNullable()
     table.string('district').notNullable()
     table.string('city').notNullable()
+    table.integer('number').notNullable()
     table.string('cep').notNullable()
     table.string('reference_point')
 

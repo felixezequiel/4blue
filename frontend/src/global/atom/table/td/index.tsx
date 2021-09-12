@@ -8,7 +8,14 @@ export const TdUpdate = ({ value, update, id, column }: GenericsProps) => {
   const [ input, setInput ] = useState(false)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(event.currentTarget.value)
+    let content = '';
+    if (column === 'genre' && event.currentTarget.value.length > 1) return
+    if (column === 'genre') {
+      content = event.currentTarget.value.toUpperCase()
+    } else {
+      content = event.currentTarget.value
+    }
+    setText(content)
   }
 
   const handleContext = (event: any) => {

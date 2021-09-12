@@ -10,7 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Models = void 0;
+const axios_1 = require("axios");
+const __1 = require("../..");
 const db = require('../../../db');
+const infoDataClients = () => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield axios_1.default.get('http://localhost:3030/clients');
+    return __1.io.emit('clients', response.data);
+});
 exports.Models = {
     select(req, res, _, table) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -31,6 +37,7 @@ exports.Models = {
     update(req, res, _, table) {
         return __awaiter(this, void 0, void 0, function* () {
             yield db(table).update(req.body).where(req.params).catch(erro => erro);
+            yield infoDataClients();
             return res.status(204).send();
         });
     },
@@ -47,6 +54,8 @@ exports.Models = {
             const response = yield db(table).insert(req.body, 'id').catch(erro => ({ error: true, message: erro }));
             if (response.error)
                 return res.status(404).json(response);
+            if (table === 'clients')
+                yield infoDataClients();
             return res.status(200).json({ id: response[0] });
         });
     }

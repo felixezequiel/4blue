@@ -11,3 +11,8 @@
   font-family: Roboto Regular;
   font-weight: 100%;
 }
+
+label {
+  width: 100%;
+  margin-bottom: 10px;
+}
