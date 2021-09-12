@@ -30,7 +30,8 @@ export const Home = ({  }: RouteProps) => {
       <h1>Clients List</h1>
       <Table 
         data={ clients }
-        view={ ['genre', 'date_of_birth', 'name'] }
+        view={ ['genre', 'date_of_birth', 'name', 'age'] }
+        update={ true }
         callback={ tableCallBack }
       />
     </ContainerHome>

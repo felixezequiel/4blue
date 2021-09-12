@@ -1,17 +1,58 @@
-import { ContainerAddress } from "../../styles/components/address";
+import { BoxAddress, ContainerAddress } from "../../styles/components/address";
 import { GenericsProps } from "../../types";
 
 export const Address = ({ addres }: GenericsProps) => {
   console.log(addres);
-  
+
   return (
     <ContainerAddress>
-      <h1>Address</h1>
-      <p>Street: { addres.street }</p>
-      <p>Number: { addres.number }</p>
-      <p>District: { addres.district }</p>
-      <p>City: { addres.city }</p>
-      <p>Reference Point: { addres.reference_point }</p>
+      <h1
+        style={{
+          marginBottom: '15px'
+        }}
+      >
+        Address
+      </h1>
+      <BoxAddress>
+        <span>
+          Street:
+        </span>
+        <span>
+          {addres.street}
+        </span>
+      </BoxAddress>
+      <BoxAddress>
+        <span>
+          Number:
+        </span>
+        <span>
+          {addres.number}
+        </span>
+      </BoxAddress>
+      <BoxAddress>
+        <span>
+          District:
+        </span>
+        <span>
+          {addres.district}
+        </span>
+      </BoxAddress>
+      <BoxAddress>
+        <span>
+          City:
+        </span>
+        <span>
+          {addres.city}
+        </span>
+      </BoxAddress>
+      <BoxAddress>
+        <span>
+          Reference Point:
+        </span>
+        <span>
+          {addres.reference_point}
+        </span>
+      </BoxAddress>
     </ContainerAddress>
   )
 }

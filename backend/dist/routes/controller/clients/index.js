@@ -10,34 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ControllerClients = void 0;
-const db = require('../../../../db');
+const models_1 = require("../../models");
 exports.ControllerClients = {
-    index(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield db('clients').select('*').where(req.query).catch(() => []);
-            return res.status(200).json(response);
-        });
-    },
-    insert(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield db('clients').insert(req.body, 'id').catch(erro => ({ error: true, message: erro }));
-            if (response.error)
-                return res.status(404).json(response);
-            return res.status(200).json({ id: response[0] });
-        });
-    },
-    deleteClients(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield db('clients').delete().where(req.params).catch(erro => ({ error: true, message: erro }));
-            if (response.error)
-                return res.status(400).json(response);
-            return res.status(204).send();
-        });
-    },
-    update(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield db('clients').update(req.body).where(req.params);
-            return res.status(204).send();
-        });
-    }
+    index: (req, res) => __awaiter(void 0, void 0, void 0, function* () { return models_1.Models.select(req, res, null, 'clients'); }),
+    insert: (req, res) => __awaiter(void 0, void 0, void 0, function* () { return models_1.Models.insert(req, res, null, 'clients'); }),
+    deleteClients: (req, res) => __awaiter(void 0, void 0, void 0, function* () { return models_1.Models.delete(req, res, null, 'clients'); }),
+    update: (req, res) => __awaiter(void 0, void 0, void 0, function* () { return models_1.Models.update(req, res, null, 'clients'); })
 };
