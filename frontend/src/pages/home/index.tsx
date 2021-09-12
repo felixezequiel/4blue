@@ -31,7 +31,6 @@ export const Home = ({  }: RouteProps) => {
       <Table 
         data={ clients }
         view={ ['genre', 'date_of_birth', 'name', 'age'] }
-        update={ true }
         callback={ tableCallBack }
       />
     </ContainerHome>

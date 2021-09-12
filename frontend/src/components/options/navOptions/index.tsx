@@ -1,18 +1,21 @@
-import { Fragment, useContext } from "react"
+import { useContext } from "react"
 import { StateGlobal } from "../../../provider/globalState"
 import { BoxNavOptions } from "../../../styles/components/options/navOptions"
+import { ContainerNavOptions } from "../../../styles/template"
 import { configNav } from "./config"
 
-
-
 export const NavOptions = () => {
-  const { state } = useContext(StateGlobal)
+  const { state, setState } = useContext(StateGlobal)
+  
   return (
-    <Fragment>
+    <ContainerNavOptions>
       {configNav.map((nav, key) => (
         <BoxNavOptions
           key={ key }
-          onClick={ () => nav.onClick({ destiny: nav.destiny, state: { ...state } }) }
+          onClick={ () => {
+            setState((prevState: any) => ({ ...prevState, explain: false }))
+            nav.onClick({ destiny: nav.destiny, state: { ...state } })
+          }}
         >
           <img 
             src={ nav.image }
@@ -27,6 +30,6 @@ export const NavOptions = () => {
           </span>
         </BoxNavOptions>    
       ))}
-    </Fragment>
+    </ContainerNavOptions>
   )
 }

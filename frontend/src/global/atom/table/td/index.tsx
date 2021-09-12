@@ -18,9 +18,7 @@ export const TdUpdate = ({ value, update, id, column }: GenericsProps) => {
 
   const handleBlur = async () => {
     await UpdateClients({ id, [column]: text })
-    /* setTimeout(() => {
-      setInput(false)
-    }, 1000) */
+    setInput(false)
   }
 
   return (
@@ -32,6 +30,7 @@ export const TdUpdate = ({ value, update, id, column }: GenericsProps) => {
           border: 'none',
           width: '100%',
           height: '30px',
+          outline: 'none'
         }}
         readOnly={ !update || (update && !input) }
         autoFocus={ true }

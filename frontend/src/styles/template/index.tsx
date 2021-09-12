@@ -35,7 +35,7 @@ export const ContainerOptions = styled.div<{ explain: boolean }>`
   width: 300px;
   
   position: absolute;
-  left: ${ props => props.explain ? '0px' : '-120px' };
+  left: ${ props => props.explain ? '0px' : '-250px' };
   transition: all .5s ease-in-out;
   
   top: 100px;
@@ -43,6 +43,7 @@ export const ContainerOptions = styled.div<{ explain: boolean }>`
 
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 
   text-align: left;
 `
@@ -55,4 +56,11 @@ export const ContainerBody = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 15px;
+`
+
+export const ContainerNavOptions = styled.div`
+width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `
