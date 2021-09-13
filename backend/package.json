@@ -7,7 +7,7 @@
     "compile": "tsc",
     "watch": "tsc -w",
     "start": "concurrently \"npm run watch\" \"npx knex migrate:latest\" \"nodemon ./dist/index.js\"",
-    "deploy": "npm install && npx knex migrate:latest && pm2 start index.js"
+    "deploy": "npm install && npx knex migrate:latest && pm2 start ./dist/index.js"
   },
   "author": "felix ezequiel",
   "license": "ISC",

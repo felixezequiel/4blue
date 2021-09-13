@@ -45,7 +45,7 @@ export const Table = ({ data, view, callback, update }: TableProps) => {
         {rows.map((dt: any, key: number) => (
           <TrCustom 
             key={ key }
-            onClick={ () => callback ? callback(dt.id) : null }
+            onDoubleClick={ () => callback ? callback(dt.id) : null }
           >
             {/* Cria as colunas de cada linha com base nas chaves do objeto json */}
             {Object.keys(dt).filter(key => !view.length || view.indexOf(key) !== -1).map((keys, index) => (
